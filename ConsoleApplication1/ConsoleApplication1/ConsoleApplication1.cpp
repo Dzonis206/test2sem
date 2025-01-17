@@ -18,6 +18,7 @@ std::string generateRandomNumber() {
 int main() {
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
+    auto start = std::chrono::high_resolution_clock::now();
     std::ofstream outFile("numbers.txt");
     if (!outFile) {
         std::cerr << "Nie można otworzyć pliku do zapisu!" << std::endl;
@@ -28,7 +29,10 @@ int main() {
         outFile << generateRandomNumber() << std::endl;
     }
     outFile.close();
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> durationWrite = end - start;
 
+    start = std::chrono::high_resolution_clock::now();
     std::ifstream inFile("numbers.txt");
     if (!inFile) {
         std::cerr << "Nie można otworzyć pliku do odczytu!" << std::endl;
@@ -52,12 +56,15 @@ int main() {
         }
     }
     inFile.close();
+    end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> durationRead = end - start;
 
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     std::sort(numbers, numbers + NUM_COUNT);
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration = end - start;
+    end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> durationSort = end - start;
 
+    start = std::chrono::high_resolution_clock::now();
     std::ofstream sortedFile("sorted_numbers.txt");
     if (!sortedFile) {
         std::cerr << "Nie można otworzyć pliku do zapisu!" << std::endl;
@@ -68,8 +75,14 @@ int main() {
         sortedFile << numbers[i] << std::endl;
     }
     sortedFile.close();
+    end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> durationWriteSorted = end - start;
 
     std::cout << "Operacja zakonczona pomyslnie!" << std::endl;
-    std::cout << "Czas sortowania: " << duration.count() << " sekund" << std::endl;
+    std::cout << "Czas zapisu do pliku: " << durationWrite.count() << " sekund" << std::endl;
+    std::cout << "Czas wczytywania z pliku: " << durationRead.count() << " sekund" << std::endl;
+    std::cout << "Czas sortowania: " << durationSort.count() << " sekund" << std::endl;
+    std::cout << "Czas zapisu posortowanych danych do pliku: " << durationWriteSorted.count() << " sekund" << std::endl;
+
     return 0;
 }

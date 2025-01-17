@@ -1,0 +1,41 @@
+Wprowadzenie
+
+Celem eksperymentu było porównanie czasów wykonania algorytmu sortowania bąbelkowego zaimplementowanego w dwóch różnych językach programowania: C++ i Python. Sortowanie bąbelkowe jest prostym algorytmem sortowania, który porównuje sąsiednie elementy i zamienia je miejscami, jeśli są w niewłaściwej kolejności. Algorytm ten jest znany ze swojej niskiej wydajności w przypadku dużych zbiorów danych, co czyni go dobrym kandydatem do porównania wydajności różnych języków programowania.
+
+
+Metodologia
+
+1.	Generowanie danych: Wygenerowano losowy zbiór danych składający się z 10,000 liczb zmiennoprzecinkowych w zakresie od 0 do 100.
+2.	Implementacja algorytmu: Algorytm sortowania bąbelkowego został zaimplementowany w C++ oraz Pythonie.
+3.	Pomiar czasu: Czas wykonania algorytmu został zmierzony za pomocą odpowiednich narzędzi dostępnych w obu językach (std::chrono w C++ oraz time w Pythonie).
+4.	Środowisko testowe: Testy zostały przeprowadzone na tym samym komputerze, aby zapewnić spójność wyników.
+
+
+Dyskusja
+
+Wyniki eksperymentu pokazują, że sortowanie bąbelkowe zaimplementowane w C++ jest znacznie szybsze niż w Pythonie. Różnica w czasach wykonania 
+
+(c++ 	czas wykonania zapisu do pliku: 0.436sek
+	czas wykonania wczytywania z pliku: 0.057sek
+	czas wykonania sortowania: 0.004sek
+	czas wykonania zapisu posortowanych liczb do pliku: 0.414sek
+
+c++ 	całkowity czas wykonania: 0.908sek)
+
+(Python	czas wykonania zapisu do pliku: 0.751sek
+	czas wykonania wpisu do pliku: 0.221sek
+	czas wykonania sotowania: 0.002sek
+	czas wykonania zapisu posortowanych liczb do pliku:0.228sek
+Python  całkowity czas wykonania: 1.202sek)
+
+wynika głównie z faktu, że C++ jest językiem kompilowanym, który generuje kod maszynowy bezpośrednio wykonywany przez procesor, podczas gdy Python jest językiem interpretowanym, co wprowadza dodatkowe narzuty związane z interpretacją kodu w czasie rzeczywistym.
+
+
+Wnioski
+
+Eksperyment potwierdził, że C++ jest bardziej wydajny pod względem czasu wykonania dla algorytmów sortowania takich jak sortowanie bąbelkowe. Wybór języka programowania ma istotny wpływ na wydajność aplikacji, zwłaszcza w przypadku operacji wymagających intensywnego przetwarzania danych.
+
+
+Zalecenia
+
+Dla aplikacji wymagających wysokiej wydajności, szczególnie w kontekście sortowania dużych zbiorów danych, zaleca się użycie języków kompilowanych takich jak C++. Python, mimo że jest mniej wydajny, może być nadal używany do prototypowania i zadań, gdzie wydajność nie jest krytyczna.

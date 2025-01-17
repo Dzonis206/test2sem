@@ -7,12 +7,14 @@ def generate_random_number():
     return str(random.uniform(0, 100))
 
 def main():
-    # Tworzenie pliku z 10000 liczbami typu string
+    start = time.time()
     with open("numbers.txt", "w") as outFile:
         for _ in range(NUM_COUNT):
             outFile.write(generate_random_number() + "\n")
+    end = time.time()
+    duration_write = end - start
 
-    # Wczytywanie liczb z pliku
+    start = time.time()
     numbers = []
     with open("numbers.txt", "r") as inFile:
         for line in inFile:
@@ -21,20 +23,26 @@ def main():
             except ValueError as e:
                 print(f"Błąd konwersji: {e}")
                 return 1
+    end = time.time()
+    duration_read = end - start
 
-    # Pomiar czasu sortowania
     start = time.time()
     numbers.sort()
     end = time.time()
-    duration = end - start
+    duration_sort = end - start
 
-    # Zapisywanie posortowanych liczb do nowego pliku
+    start = time.time()
     with open("sorted_numbers.txt", "w") as sortedFile:
         for num in numbers:
             sortedFile.write(f"{num}\n")
+    end = time.time()
+    duration_write_sorted = end - start
 
     print("Operacja zakonczona pomyslnie!")
-    print(f"Czas sortowania: {duration} sekund")
+    print(f"Czas zapisu do pliku: {duration_write} sekund")
+    print(f"Czas wczytywania z pliku: {duration_read} sekund")
+    print(f"Czas sortowania: {duration_sort} sekund")
+    print(f"Czas zapisu posortowanych danych do pliku: {duration_write_sorted} sekund")
 
 if __name__ == "__main__":
     main()
